@@ -25,6 +25,14 @@ $roleClass = ($role == 1) ? "sidebar-admin" : "sidebar-user";
         </li>
 
         <li>
+            <a href="../admin/low-stock.php"
+                class="<?php echo basename($_SERVER['PHP_SELF']) == 'low-stock.php' ? 'active' : ''; ?>">
+                <i class="fa-solid fa-triangle-exclamation"></i> Low Stock Alerts
+            </a>
+        </li>
+
+
+        <li>
             <a href="../admin/manage-inventory.php"
                 class="<?php echo basename($_SERVER['PHP_SELF']) == 'manage-inventory.php' ? 'active' : ''; ?>">
                 <i class="fa-solid fa-box"></i> Manage Inventory
