@@ -62,7 +62,7 @@ if ($userRole == 1) {
             $notifications[] = [
                 'type' => 'new_product',
                 'time' => $createdAt,
-                'message' => "🆕 A new item, <strong>{$productName}</strong>, was just added by {$adminName}."
+                'message' => "🆕 A new item, <strong>{$productName}</strong>, was just added."
             ];
         }
     }
