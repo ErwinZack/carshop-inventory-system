@@ -21,26 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
 
-        // 🔹 Set session variables for navbar and access
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['role_id'] = $row['role_id'];
         $_SESSION['email'] = $row['email'];
+        $_SESSION['first_name'] = !empty($row['first_name']) ? $row['first_name'] : 'Admin';
+        $_SESSION['username'] = $row['username'];
 
-        $_SESSION['first_name'] = $row['first_name'];
-$_SESSION['username'] = $row['username'];
-
-        
-
-// ✅ Store admin first name for navbar welcome message
-if (!empty($row['first_name'])) {
-    $_SESSION['first_name'] = $row['first_name'];
-} else {
-    $_SESSION['first_name'] = 'Admin';
-}
-
-
-
-        // 🔹 Redirect to dashboard
         header("Location: dashboard.php");
         exit();
     } else {
@@ -57,6 +43,32 @@ if (!empty($row['first_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="../assets/css/admin-login-register.css">
+
+    <!-- ✅ Remix Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* Extra CSS for password toggle */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 40%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,7 +98,12 @@ if (!empty($row['first_name'])) {
 
                 <form method="POST">
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
+
+                    <div class="password-container">
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <i class="ri-eye-line toggle-password" id="togglePassword"></i>
+                    </div>
+
                     <p class="error-message"><?php echo $error; ?></p>
                     <button type="submit">Login</button>
                 </form>
@@ -95,6 +112,18 @@ if (!empty($row['first_name'])) {
             </div>
         </div>
     </div>
+
+    <!-- ✅ JS to toggle password visibility -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const isPassword = passwordField.type === 'password';
+            passwordField.type = isPassword ? 'text' : 'password';
+            togglePassword.className = isPassword ? 'ri-eye-off-line toggle-password' : 'ri-eye-line toggle-password';
+        });
+    </script>
 </body>
 
 </html>

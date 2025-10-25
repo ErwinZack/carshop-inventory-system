@@ -31,10 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['role_id'] = $row['role_id'];
             $_SESSION['email'] = $row['email'];
-
-            // Set first_name and username in session for navbar display
-            $_SESSION['first_name'] = $row['first_name']; // can be NULL
-            $_SESSION['username'] = $row['username'];     // fallback if first_name is NULL
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['username'] = $row['username'];
 
             header("Location: dashboard.php");
             exit();
@@ -57,6 +55,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Login</title>
     <link rel="stylesheet" href="../assets/css/user-login-register.css">
+
+    <!-- ✅ Remix Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* Extra CSS for password toggle */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 40%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,8 +107,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <form method="POST">
                     <input type="email" name="email" placeholder="Email" required autocomplete="email">
-                    <input type="password" name="password" placeholder="Password" required
-                        autocomplete="current-password">
+
+                    <div class="password-container">
+                        <input type="password" name="password" id="password" placeholder="Password" required
+                            autocomplete="current-password">
+                        <i class="ri-eye-line toggle-password" id="togglePassword"></i>
+                    </div>
+
                     <p class="error-message"><?php echo $error; ?></p>
                     <button type="submit">Login</button>
                     <p><a href="forgot-password.php">Forgot Password?</a></p>
@@ -92,6 +121,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const isPassword = passwordField.type === 'password';
+            passwordField.type = isPassword ? 'text' : 'password';
+            togglePassword.className = isPassword ? 'ri-eye-off-line toggle-password' : 'ri-eye-line toggle-password';
+        });
+    </script>
 </body>
 
 </html>
