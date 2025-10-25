@@ -19,6 +19,10 @@ $lowStock = $conn->query("SELECT COUNT(*) as count FROM products WHERE quantity 
 $totalValueQuery = $conn->query("SELECT SUM(price * quantity) AS total_value FROM products");
 $totalValue = $totalValueQuery->fetch_assoc()['total_value'] ?? 0;
 
+// Fetch total sales (sum of all active transactions)
+$totalSalesQuery = $conn->query("SELECT SUM(quantity * price_per_unit) AS total_sales FROM transactions WHERE status = 'active'");
+$totalSales = $totalSalesQuery->fetch_assoc()['total_sales'] ?? 0;
+
 // Fetch Product Category Distribution
 $categoryQuery = $conn->query("SELECT category, COUNT(*) as count FROM products GROUP BY category");
 $categories = [];
@@ -76,6 +80,14 @@ $quantities_json = json_encode($quantities);
             <div class="stat-details">
                 <h3><?php echo $lowStock; ?></h3>
                 <p>Low Stock Items</p>
+            </div>
+        </div>
+
+        <div class="stat-card sales">
+            <div class="stat-icon"><i class="fa-solid fa-receipt"></i></div>
+            <div class="stat-details">
+                <h3>₱<?php echo number_format($totalSales, 0); ?></h3>
+                <p>Total Sales</p>
             </div>
         </div>
 

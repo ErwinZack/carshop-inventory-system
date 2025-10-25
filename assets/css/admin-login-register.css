@@ -40,7 +40,7 @@ body {
 .welcome-text {
     text-align: left;
     max-width: 320px;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .welcome-text h1 {
@@ -234,8 +234,9 @@ body {
 
 /* AutoCare logo at the top */
 .autocare-logo {
-    width: 140px;
+    width: 180px;
     height: auto;
+    margin-left: 100px;
     /* margin-bottom: 50px;  */
     object-fit: contain;
     align-self: flex-start;
