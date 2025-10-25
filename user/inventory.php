@@ -57,11 +57,11 @@ if (isset($_GET['q']) && !empty(trim($_GET['q']))) {
                     </a>
 
                     <!-- Sell Product -->
-                    <button class="action-icon sell-icon"
+                    <!--<button class="action-icon sell-icon"
                         onclick="openSellModal(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars($row['name']); ?>', <?php echo $row['price']; ?>)"
                         title="Sell Product">
                         <i class="fa fa-cart-plus"></i>
-                    </button>
+                    </button>-->
 
                     <!-- Archive Product -->
                     <a href="archive-product.php?id=<?php echo $row['id']; ?>" class="action-icon archive-icon"
@@ -78,7 +78,7 @@ if (isset($_GET['q']) && !empty(trim($_GET['q']))) {
 </div>
 
 <!-- Sell Modal -->
-<div id="sellModal" class="modal">
+<!--<div id="sellModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeSellModal()">&times;</span>
         <h3>Sell Product</h3>
@@ -103,7 +103,7 @@ if (isset($_GET['q']) && !empty(trim($_GET['q']))) {
             <button type="submit" class="btn btn-sell">Confirm Sale</button>
         </form>
     </div>
-</div>
+</div>-->
 
 <?php include("../includes/footer.php"); ?>
 
