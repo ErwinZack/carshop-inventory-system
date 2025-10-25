@@ -71,8 +71,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="form-group">
             <label for="category">Category:</label>
-            <input type="text" name="category" id="category" required>
+            <select name="category" id="category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="oil">Oil</option>
+                <option value="lubricants">Lubricants</option>
+                <option value="tires">Tires</option>
+                <option value="accessories">Accessories</option>
+                <option value="auto parts">Auto Parts</option>
+                <option value="car parts">Car Parts</option>
+                <option value="vehicles">Vehicles</option>
+            </select>
         </div>
+
 
         <div class="form-group">
             <label for="quantity">Quantity:</label>
