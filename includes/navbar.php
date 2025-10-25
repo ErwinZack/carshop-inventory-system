@@ -23,7 +23,7 @@ $roleClass = ($role_id == 1) ? "navbar-admin" : "navbar-user";
 
         <div class="navbar-right">
             <!-- Search -->
-            <div class="navbar-search" style="position: relative;">
+            <!--<div class="navbar-search" style="position: relative;">
                 <form action="<?php 
                     $current_page = basename($_SERVER['PHP_SELF']); 
                     if ($current_page === 'inventory.php') {
@@ -60,7 +60,7 @@ $roleClass = ($role_id == 1) ? "navbar-admin" : "navbar-user";
                 </form>
 
                 <div id="searchResults" class="search-results"></div>
-            </div>
+            </div>-->
 
             <!-- Notifications -->
             <div class="navbar-notifications">

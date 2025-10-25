@@ -39,10 +39,45 @@ $result = $conn->query($query);
 <?php include("../includes/header.php"); ?>
 <?php include("../includes/navbar.php"); ?>
 <?php include("../includes/sidebar.php"); ?>
+<?php include '../includes/getSearchAction.php'; ?>
+
+<form action="<?php echo getSearchAction($role_id); ?>" method="GET" autocomplete="off">
+
+<form action="<?php echo getSearchAction($role_id); ?>" method="GET" autocomplete="off">
+    <?php if ($current_page === 'category.php' && isset($_GET['cat'])): ?>
+        <input type="hidden" name="cat" value="<?php echo htmlspecialchars($_GET['cat']); ?>">
+    <?php endif; ?>
+
+    <input type="text" id="searchInput" name="q" placeholder="Search products..."
+        value="<?php echo isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?>"
+        style="padding-right: 35px;">
+
+</form>
 
 <!-- Main Content -->
 <div class="main-content inventory-page">
     <h2 class="page-title"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock Alerts</h2>
+
+    <div class="page-search">
+        <form action="<?php echo getSearchAction($role_id); ?>" method="GET" autocomplete="off" style="position: relative;">
+            <?php if (basename($_SERVER['PHP_SELF']) === 'category.php' && isset($_GET['cat'])): ?>
+                <input type="hidden" name="cat" value="<?php echo htmlspecialchars($_GET['cat']); ?>">
+            <?php endif; ?>
+
+            <input type="text" id="searchInput" name="q" placeholder="Search products..."
+                value="<?php echo isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?>"
+                style="padding-right: 35px;">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                viewBox="0 0 24 24"
+                style="position: absolute; left: 320px; right: 5px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+                <path
+                    d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" />
+            </svg>
+        </form>
+
+        <div id="searchResults" class="search-results"></div>
+    </div>
 
     <?php if ($result->num_rows > 0): ?>
     <table class="inventory-table">
