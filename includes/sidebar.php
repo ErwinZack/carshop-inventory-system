@@ -86,11 +86,11 @@ $roleClass = ($role == 1) ? "sidebar-admin" : "sidebar-user";
             </a>
         </li>
 
-        <!-- New Feature: Reports / Analytics -->
+        <!-- New Feature: Add Sales -->
         <li>
-            <a href="../user/reports.php"
-                class="<?php echo basename($_SERVER['PHP_SELF']) == 'reports.php' ? 'active' : ''; ?>">
-                <i class="fa-solid fa-chart-simple"></i> Reports
+            <a href="../user/add-sales.php"
+                class="<?php echo basename($_SERVER['PHP_SELF']) == 'add-sales.php' ? 'active' : ''; ?>">
+                <i class="fas fa-shopping-cart"></i> Add Sales
             </a>
         </li>
 
@@ -99,6 +99,14 @@ $roleClass = ($role == 1) ? "sidebar-admin" : "sidebar-user";
             <a href="../user/sales-history.php"
                 class="<?php echo basename($_SERVER['PHP_SELF']) == 'sales-history.php' ? 'active' : ''; ?>">
                 <i class="fa-solid fa-receipt"></i> Sales History
+            </a>
+        </li>
+
+        <!-- New Feature: Reports / Analytics -->
+        <li>
+            <a href="../user/reports.php"
+                class="<?php echo basename($_SERVER['PHP_SELF']) == 'reports.php' ? 'active' : ''; ?>">
+                <i class="fa-solid fa-chart-simple"></i> Reports
             </a>
         </li>
 
